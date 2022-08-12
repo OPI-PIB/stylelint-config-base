@@ -1,0 +1,18 @@
+{
+	"name": "@opi-pib/stylelint-config-base",
+	"version": "1.0.0",
+	"description": "Stylelint config for scss files",
+	"main": "index.js",
+	"author": "Dawid Lubowiecki",
+	"license": "MIT",
+	"dependencies": {
+		"stylelint": "^14.10.0",
+		"stylelint-config-prettier": "^9.0.3",
+		"stylelint-config-standard-scss": "^5.0.0",
+		"stylelint-prettier": "^2.0.0"
+	},
+	"peerDependencies": {
+		"postcss": "^8.4.16",
+		"prettier": "^2.7.1"
+	}
+}
