@@ -1,4 +1,4 @@
-# @opi-pib/stylelint-config-base
+# @opi_pib/stylelint-config-base
 
 ## Install
 
