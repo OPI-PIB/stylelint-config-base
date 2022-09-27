@@ -1,12 +1,12 @@
 {
 	"name": "@opi_pib/stylelint-config-base",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Stylelint config for scss files",
 	"main": "index.js",
 	"author": "Dawid Lubowiecki",
 	"license": "MIT",
 	"dependencies": {
-		"stylelint": "^14.11.0",
+		"stylelint": "^14.12.1",
 		"stylelint-config-prettier": "^9.0.3",
 		"stylelint-config-standard-scss": "^5.0.0",
 		"stylelint-prettier": "^2.0.0"
