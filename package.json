@@ -1,6 +1,6 @@
 {
 	"name": "@opi_pib/stylelint-config-base",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Stylelint config for scss files",
 	"main": "index.js",
 	"author": "Dawid Lubowiecki",
@@ -13,7 +13,7 @@
 	},
 	"peerDependencies": {
 		"postcss": "^8.4.19",
-		"prettier": "^2.7.1"
+		"prettier": "^2.8.0"
 	},
 	"repository": {
 		"type": "git",
