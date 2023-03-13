@@ -1,7 +1,6 @@
 module.exports = {
 	extends: [
 		'stylelint-config-standard-scss',
-		'stylelint-prettier/recommended',
 	],
 	rules: {
 		'no-empty-source': null,

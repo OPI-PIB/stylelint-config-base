@@ -3,13 +3,7 @@
 ## Install
 
 ```
-npm install -D stylelint prettier @opi_pib/stylelint-config-base
-```
-
-### Temporary fix: https://github.com/stylelint/stylelint/issues/5766
-
-```
-npm install -D postcss
+npm install -D stylelint @opi_pib/stylelint-config-base
 ```
 
 ## Config
