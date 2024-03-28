@@ -22,6 +22,13 @@ npm install -D stylelint @opi_pib/stylelint-config-base
 "lint:styles": "stylelint **/*.scss --fix -i=.gitignore",
 ```
 
+### browserslist
+
+```
+> 5%
+Last 2 versions
+```
+
 ### VS Code settings.json
 
 ```

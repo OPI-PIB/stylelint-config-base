@@ -1,7 +1,6 @@
 module.exports = {
-	extends: [
-		'stylelint-config-standard-scss',
-	],
+	extends: ['stylelint-config-standard-scss'],
+	plugins: ['stylelint-no-unsupported-browser-features'],
 	rules: {
 		'no-empty-source': null,
 		'scss/at-rule-no-unknown': [
@@ -14,6 +13,12 @@ module.exports = {
 					'responsive',
 					'screen',
 				],
+			},
+		],
+		'plugin/no-unsupported-browser-features': [
+			true,
+			{
+				severity: 'warning',
 			},
 		],
 	},
