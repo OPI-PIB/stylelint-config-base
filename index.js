@@ -1,5 +1,5 @@
 module.exports = {
-	extends: ['stylelint-config-standard-scss'],
+	extends: ['stylelint-config-recommended-scss'],
 	plugins: ['stylelint-no-unsupported-browser-features'],
 	rules: {
 		'no-empty-source': null,
