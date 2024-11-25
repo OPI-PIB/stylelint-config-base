@@ -1,12 +1,12 @@
 {
 	"name": "@opi_pib/stylelint-config-base",
-	"version": "1.2.0",
+	"version": "1.3.0",
 	"description": "Stylelint config for scss files",
 	"main": "index.js",
 	"author": "Dawid Lubowiecki",
 	"license": "MIT",
 	"dependencies": {
-		"postcss-scss": "^4.0.9",
+		"postcss-scss": "^4.0.0",
 		"stylelint": "^16.0.0",
 		"stylelint-config-recommended-scss": "^14.0.0",
 		"stylelint-no-unsupported-browser-features": "^8.0.0"
