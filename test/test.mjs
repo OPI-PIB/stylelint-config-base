@@ -5,6 +5,44 @@ import stylelint from 'stylelint';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const rulesToTest = new Set([
+	'order/order',
+	'order/properties-alphabetical-order',
+	'scss/at-rule-no-unknown',
+	'block-no-empty',
+	'color-function-notation',
+	'color-hex-length',
+	'comment-empty-line-before',
+	'comment-whitespace-inside',
+	'custom-media-pattern',
+	'custom-property-pattern',
+	'declaration-block-no-redundant-longhand-properties',
+	'declaration-empty-line-before',
+	'font-family-name-quotes',
+	'function-name-case',
+	'function-no-unknown',
+	'function-url-quotes',
+	'hue-degree-notation',
+	'import-notation',
+	'keyframe-selector-notation',
+	'keyframes-name-pattern',
+	'length-zero-no-unit',
+	'media-feature-range-notation',
+	'number-max-precision',
+	'property-no-vendor-prefix',
+	'rule-empty-line-before',
+	'selector-class-pattern',
+	'selector-no-vendor-prefix',
+	'selector-not-notation',
+	'selector-pseudo-element-colon-notation',
+	'selector-pseudo-element-no-unknown',
+	'selector-type-case',
+	'selector-type-no-unknown',
+	'shorthand-property-no-redundant-values',
+	'value-keyword-case',
+	'value-no-vendor-prefix',
+]);
+
 (async () => {
 	try {
 		const result = await stylelint.lint({
@@ -55,27 +93,48 @@ const __dirname = path.dirname(__filename);
 			process.exit(1);
 		}
 
-		const expectedBadCount = 54;
-		const actualBadCountCSS = badCSS.warnings.length;
-		const actualBadCountSCSS = badSCSS.warnings.length;
+		const expectedBadCount = 55;
 
-		if (
-			actualBadCountCSS === expectedBadCount &&
-			actualBadCountSCSS === expectedBadCount
-		) {
-			console.log('✅ Test passed - stylelint failed as expected.');
-			process.exit(0);
-		}
-
-		console.error(
-			`❌ Expected ${expectedBadCount} bad file warning(s), but got ${actualBadCountCSS} for bad.css file.`
-		);
-		console.error(
-			`❌ Expected ${expectedBadCount} bad file warning(s), but got ${actualBadCountSCSS} for bad.scss file.`
-		);
+		console.log(`Testing ${rulesToTest.size} rules.`);
+		testFile('bad.css', badCSS.warnings, expectedBadCount);
+		testFile('bad.scss', badSCSS.warnings, expectedBadCount);
 		process.exit(1);
 	} catch (err) {
 		console.error('❌ Stylelint failed:', err);
 		process.exit(1);
 	}
 })();
+
+function testFile(filename, warnings, expectedBadCount) {
+	const uniqueRules = new Set(warnings.map((x) => x.rule));
+	let rulesTestedCount = 0;
+
+	for (const r of uniqueRules) {
+		if (!rulesToTest.has(r)) {
+			console.warn(
+				`👉 Rule ${r} has been tested, but is not present in rulesToTest array. Please update test.mjs file.`
+			);
+		}
+	}
+
+	for (const r of rulesToTest) {
+		if (!uniqueRules.has(r)) {
+			console.warn(`👉 Rule ${r} has not been tested.`);
+		} else {
+			rulesTestedCount += 1;
+		}
+	}
+
+	if (rulesTestedCount === rulesToTest.size) {
+		console.error(`All rules have been tested for ${filename} file.`);
+	}
+
+	if (warnings.length === expectedBadCount) {
+		console.log('✅ Test passed - stylelint failed as expected.');
+		return;
+	}
+
+	console.error(
+		`❌ Expected ${expectedBadCount} bad file warning(s), but got ${warnings.length} for ${filename} file.`
+	);
+}
