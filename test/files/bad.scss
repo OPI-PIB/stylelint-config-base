@@ -4,13 +4,6 @@
 /* import-notation */
 @import "style.css";
 
-/* import tailwind */
-@layer tailwind {
-	@tailwind base;
-	@tailwind components;
-	@tailwind utilities;
-}
-
 .sorted-tailwind {
 	display: none;
 
