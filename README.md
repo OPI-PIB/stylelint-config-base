@@ -26,7 +26,12 @@ npm install -D stylelint @opi_pib/stylelint-config-base
 
 ```
 > 5%
-Last 2 versions
+
+last 1 Chrome version
+last 1 Firefox version
+last 2 Edge major versions
+last 1 Safari major versions
+last 1 iOS major versions
 ```
 
 ### VS Code settings.json

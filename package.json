@@ -1,15 +1,23 @@
 {
 	"name": "@opi_pib/stylelint-config-base",
-	"version": "1.4.0",
+	"version": "1.5.0",
+	"engines": {
+		"node": ">=24.0.0",
+		"npm": ">=10.8.0"
+	},
 	"description": "Stylelint config for scss files",
 	"main": "index.js",
 	"author": "Dawid Lubowiecki",
 	"license": "MIT",
+	"scripts": {
+		"test": "node ./test/test.mjs"
+	},
 	"dependencies": {
 		"postcss-scss": "^4.0.0",
 		"stylelint": "^16.0.0",
-		"stylelint-config-recommended-scss": "^15.0.0",
-		"stylelint-no-unsupported-browser-features": "^8.0.0"
+		"stylelint-config-recommended-scss": "^16.0.0",
+		"stylelint-no-unsupported-browser-features": "^8.0.0",
+		"stylelint-order": "^7.0.0"
 	},
 	"repository": {
 		"type": "git",

@@ -1,0 +1,259 @@
+/* prettier-ignore-file */
+/* tailwindcss-disable */
+
+/* import-notation */
+@import "style.css";
+
+/* import tailwind */
+@layer tailwind {
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+}
+
+.sorted-tailwind {
+	display: none;
+
+	@apply block;
+}
+
+/* at-rule-no-unknown */
+.at-rule-error {
+	@foo bar;
+}
+
+/* scss/at-rule-no-unknown */
+.scss-at-rule-error {
+	@unknown-scss-rule baz;
+}
+
+/* order/properties-alphabetical-order */
+.order-error {
+	color: red;
+	background: blue;
+}
+
+/* selector-pseudo-element-no-unknown */
+.pseudo-element-error::unknown-pseudo {
+	color: green;
+}
+
+/* shorthand-property-no-redundant-values */
+.shorthand-redundant {
+	margin: 0 0 0 0;
+}
+
+/* at-rule-empty-line-before */
+.empty-line-before-error {
+	@media (min-width: 500px) {
+		color: red;
+	}
+}
+
+/* at-rule-no-vendor-prefix */
+.vendor-prefix-error {
+	-webkit-keyframes foo {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+}
+
+/* color-function-notation */
+.color-function-error {
+	color: rgb(255, 0, 0);
+}
+
+/* color-hex-length */
+.hex-length-error {
+	color: #ff0000;
+}
+
+/* comment-empty-line-before */
+.comment-empty-line-error {
+	color: blue;
+	/* comment */
+	display: block;
+}
+
+/* comment-whitespace-inside */
+.comment-whitespace-error {
+	/*bad*/
+	color: red;
+}
+
+/* custom-media-pattern */
+.custom-media-error {
+	@custom-media --BadName (max-width: 500px);
+}
+
+/* custom-property-empty-line-before */
+.custom-property-empty-line-error {
+	--prop: 10px;
+	--another: 20px;
+	display: block;
+}
+
+/* custom-property-pattern */
+.custom-property-pattern-error {
+	--BadName: red;
+}
+
+/* declaration-block-no-redundant-longhand-properties */
+.declaration-block-longhand-error {
+	margin-top: 10px;
+	margin-right: 0;
+	margin-bottom: 10px;
+	margin-left: 0;
+}
+
+/* font-family-name-quotes */
+.font-family-quotes-error {
+	font-family: "Arial", sans-serif;
+}
+
+/* function-name-case */
+.function-name-case-error {
+	color: Foo(10px);
+}
+
+/* function-no-unknown */
+.function-no-unknown-error {
+	color: foo(10px);
+}
+
+/* function-url-quotes */
+.function-url-quotes-error {
+	background: url(test.png);
+}
+
+/* hue-degree-notation */
+.hue-degree-notation-error {
+	color: hsl(0.5, 50%, 50%);
+}
+
+/* keyframe-selector-notation */
+.keyframe-selector-error {
+	@keyframes slide {
+		from {
+			opacity: 0;
+		}
+		50% {
+			opacity: 0.5;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+}
+
+/* keyframes-name-pattern */
+.keyframes-name-pattern-error {
+	@keyframes SlideUp {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+}
+
+/* length-zero-no-unit */
+.length-zero-no-unit-error {
+	margin: 0px;
+}
+
+/* lightness-notation */
+.lightness-notation-error {
+	color: hsl(0, 0%, 0.5);
+}
+
+/* media-feature-name-no-vendor-prefix */
+.media-feature-vendor-error {
+	@media (-webkit-min-device-pixel-ratio: 2) {
+		color: red;
+	}
+}
+
+/* media-feature-range-notation */
+.media-feature-range-error {
+	@media (min-width: 1px) and (max-width: 2px) {
+		color: red;
+	}
+}
+
+/* no-empty-source */
+.no-empty-source-error {
+}
+
+/* number-max-precision */
+.number-max-precision-error {
+	width: 1.23456px;
+}
+
+/* property-no-vendor-prefix */
+.property-vendor-prefix-error {
+	-webkit-transform: rotate(45deg);
+}
+
+/* rule-empty-line-before */
+.rule-empty-line-before-error {
+	color: red;
+	background: blue;
+}
+
+/* selector-attribute-quotes */
+.selector-attribute-quotes-error {
+	[type="text"] {
+		color: red;
+	}
+}
+
+/* selector-class-pattern */
+.selector-class-pattern-error {
+	.BadClassName {
+		color: red;
+	}
+}
+
+/* selector-no-vendor-prefix */
+.selector-no-vendor-prefix-error {
+	::-webkit-input-placeholder {
+		color: red;
+	}
+}
+
+/* selector-not-notation */
+.selector-not-notation-error {
+	:not(a):not(div) {
+		color: red;
+	}
+}
+
+/* selector-pseudo-element-colon-notation */
+.selector-pseudo-element-colon-notation-error {
+	:before {
+		content: "";
+	}
+}
+
+/* selector-type-case */
+.selector-type-case-error {
+	DIV {
+		color: red;
+	}
+}
+
+/* value-keyword-case */
+.value-keyword-case-error {
+	display: FLEX;
+}
+
+/* value-no-vendor-prefix */
+.value-no-vendor-prefix-error {
+	display: -webkit-flex;
+}
