@@ -8,6 +8,10 @@
 @import url("tailwindcss/preflight.css") layer(base);
 @import url("tailwindcss/utilities.css") layer(utilities);
 
+@use "layers" as mat;
+
+@include mat;
+
 .sorted-tailwind {
 	@apply block;
 
