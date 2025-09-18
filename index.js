@@ -7,6 +7,8 @@ module.exports = {
 	plugins: ['stylelint-no-unsupported-browser-features', 'stylelint-order'],
 	customSyntax: postcssScss,
 	rules: {
+		'at-rule-no-unknown': null,
+		'scss/at-rule-no-unknown': null,
 		'plugin/no-unsupported-browser-features': [
 			true,
 			{

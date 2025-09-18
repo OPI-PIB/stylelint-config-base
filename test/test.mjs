@@ -5,10 +5,11 @@ import stylelint from 'stylelint';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const expectedBadCount = 50;
+
 const rulesToTest = new Set([
 	'order/order',
 	'order/properties-alphabetical-order',
-	'scss/at-rule-no-unknown',
 	'block-no-empty',
 	'color-function-notation',
 	'color-hex-length',
@@ -92,8 +93,6 @@ const rulesToTest = new Set([
 			console.error('❌ Errors during formatting good.scss file.');
 			process.exit(1);
 		}
-
-		const expectedBadCount = 55;
 
 		console.log(`Testing ${rulesToTest.size} rules.`);
 		testFile('bad.css', badCSS.warnings, expectedBadCount);
