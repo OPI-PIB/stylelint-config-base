@@ -1,5 +1,13 @@
+@charset "utf-8";
+
 /* import-notation */
-@import url("style.css");
+@import 'style.css';
+
+/* import tailwind v4 */
+
+@config "../tailwind.config.js";
+
+@import 'tailwindcss';
 
 /* import tailwind v3 */
 @layer tailwind {
@@ -8,7 +16,7 @@
 	@tailwind utilities;
 }
 
-@use "layers" as mat;
+@use 'layers' as mat;
 
 @include mat;
 
@@ -16,6 +24,19 @@
 	@apply block;
 
 	display: none;
+}
+
+/* selector-pseudo-element-no-unknown */
+:host {
+	color: red;
+}
+
+:host-context {
+	color: red;
+}
+
+::ng-deep {
+	color: red;
 }
 
 /* order/properties-alphabetical-order */
@@ -90,7 +111,7 @@
 
 /* function-url-quotes */
 .function-url-quotes-error {
-	background: url("test.png");
+	background: url('test.png');
 }
 
 /* hue-degree-notation */
@@ -163,7 +184,7 @@
 
 /* selector-attribute-quotes */
 .selector-attribute-quotes-error {
-	[type="text"] {
+	[type='text'] {
 		color: red;
 	}
 }
@@ -192,7 +213,7 @@
 /* selector-pseudo-element-colon-notation */
 .selector-pseudo-element-colon-notation-error {
 	::before {
-		content: "";
+		content: '';
 	}
 }
 

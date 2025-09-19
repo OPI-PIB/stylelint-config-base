@@ -41,7 +41,7 @@ const rulesToTest = new Set([
 	'selector-type-no-unknown',
 	'shorthand-property-no-redundant-values',
 	'value-keyword-case',
-	'value-no-vendor-prefix',
+	'value-no-vendor-prefix'
 ]);
 
 (async () => {
@@ -51,7 +51,7 @@ const rulesToTest = new Set([
 				path.join(__dirname, 'files/bad.css'),
 				path.join(__dirname, 'files/bad.scss'),
 				path.join(__dirname, 'files/good.css'),
-				path.join(__dirname, 'files/good.scss'),
+				path.join(__dirname, 'files/good.scss')
 			],
 			formatter: 'json',
 			config: {
@@ -59,20 +59,17 @@ const rulesToTest = new Set([
 				overrides: [
 					{
 						files: ['./test/files/*.css', './test/files/*.scss'],
-						extends: ['./index.js'],
-					},
-				],
-			},
+						extends: ['./index.js']
+					}
+				]
+			}
 		});
 
 		let output;
 		try {
 			output = JSON.parse(result.report || '[]');
 		} catch (e) {
-			console.error(
-				'❌ Could not parse stylelint output as JSON:',
-				e.message
-			);
+			console.error('❌ Could not parse stylelint output as JSON:', e.message);
 			console.error('Raw output was:', result.output);
 			process.exit(1);
 		}
