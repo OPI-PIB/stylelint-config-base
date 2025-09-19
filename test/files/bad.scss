@@ -2,7 +2,7 @@
 /* tailwindcss-disable */
 
 /* import-notation */
-@import "style.css";
+@import url('style.css');
 
 .sorted-tailwind {
 	display: none;
@@ -105,7 +105,7 @@
 
 /* font-family-name-quotes */
 .font-family-quotes-error {
-	font-family: "Arial", sans-serif;
+	font-family: 'Arial', sans-serif;
 }
 
 /* function-name-case */
@@ -201,7 +201,7 @@
 
 /* selector-attribute-quotes */
 .selector-attribute-quotes-error {
-	[type="text"] {
+	[type='text'] {
 		color: red;
 	}
 }
@@ -230,7 +230,7 @@
 /* selector-pseudo-element-colon-notation */
 .selector-pseudo-element-colon-notation-error {
 	:before {
-		content: "";
+		content: '';
 	}
 }
 
