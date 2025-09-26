@@ -1,12 +1,18 @@
-'use strict';
+import pkg from 'stylelint-config-recommended-scss';
 
-const postcssScss = require('postcss-scss');
+import cssConfig from './css.mjs';
+import postcssScss from 'postcss-scss';
 
-module.exports = {
-	extends: ['stylelint-config-recommended-scss'],
-	plugins: ['stylelint-no-unsupported-browser-features', 'stylelint-order'],
+const { rules } = pkg;
+
+/** @type {import('stylelint').Config} */
+export default {
+	...cssConfig,
+	files: ['**/*.scss'],
 	customSyntax: postcssScss,
 	rules: {
+		...cssConfig.rules,
+		...rules,
 		'plugin/no-unsupported-browser-features': [
 			true,
 			{
@@ -16,13 +22,7 @@ module.exports = {
 		'alpha-value-notation': [
 			'percentage',
 			{
-				exceptProperties: [
-					'opacity',
-					'fill-opacity',
-					'flood-opacity',
-					'stop-opacity',
-					'stroke-opacity'
-				]
+				exceptProperties: ['opacity', 'fill-opacity', 'flood-opacity', 'stop-opacity', 'stroke-opacity']
 			}
 		],
 		'at-rule-empty-line-before': [

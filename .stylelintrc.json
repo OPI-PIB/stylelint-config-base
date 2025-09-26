@@ -1,9 +1,0 @@
-{
-	"rules": {},
-	"overrides": [
-		{
-			"files": ["./test/**/good.css", "./test/**/good.scss"],
-			"extends": ["./index.js"]
-		}
-	]
-}

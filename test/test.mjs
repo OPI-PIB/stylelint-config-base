@@ -59,7 +59,7 @@ const rulesToTest = new Set([
 				overrides: [
 					{
 						files: ['./test/files/*.css', './test/files/*.scss'],
-						extends: ['./index.js']
+						extends: ['./src/scss.mjs']
 					}
 				]
 			}
