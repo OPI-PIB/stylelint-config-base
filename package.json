@@ -14,7 +14,7 @@
 		"npm": ">=10.8.0"
 	},
 	"scripts": {
-		"test": "node ./test/test.mjs"
+		"test": "vitest --run"
 	},
 	"prettier": "@opi_pib/prettier-config-base",
 	"author": "Dawid Lubowiecki",
@@ -22,16 +22,18 @@
 	"dependencies": {
 		"postcss-scss": "^4.0.0",
 		"stylelint": "^16.0.0",
+		"stylelint-config-recommended": "^17.0.0",
 		"stylelint-config-recommended-scss": "^16.0.0",
-		"stylelint-config-standard": "^39.0.0",
 		"stylelint-no-unsupported-browser-features": "^8.0.0",
 		"stylelint-order": "^7.0.0"
+	},
+	"devDependencies": {
+		"@opi_pib/eslint-config-base": "^9.4.4",
+		"@opi_pib/prettier-config-base": "^1.0.0",
+		"vitest": "^3.2.4"
 	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/OPI-PIB/stylelint-config-base.git"
-	},
-	"devDependencies": {
-		"@opi_pib/prettier-config-base": "^1.0.0"
 	}
 }

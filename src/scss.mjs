@@ -1,7 +1,7 @@
+import postcssScss from 'postcss-scss';
 import pkg from 'stylelint-config-recommended-scss';
 
 import cssConfig from './css.mjs';
-import postcssScss from 'postcss-scss';
 
 const { rules } = pkg;
 

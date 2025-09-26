@@ -1,8 +1,16 @@
 /** @type {import('stylelint').Config} */
 export default {
-	extends: ['stylelint-config-standard'],
+	extends: 'stylelint-config-recommended',
 	plugins: ['stylelint-no-unsupported-browser-features', 'stylelint-order'],
 	rules: {
+		'plugin/no-unsupported-browser-features': [
+			true,
+			{
+				severity: 'warning'
+			}
+		],
+		'order/order': ['custom-properties', 'declarations'],
+		'order/properties-alphabetical-order': true,
 		'alpha-value-notation': [
 			'percentage',
 			{
@@ -14,7 +22,8 @@ export default {
 			'always',
 			{
 				except: ['blockless-after-same-name-blockless', 'first-nested'],
-				ignore: ['after-comment']
+				ignore: ['after-comment'],
+				ignoreAtRules: ['else']
 			}
 		],
 		'at-rule-no-unknown': true,
@@ -105,11 +114,9 @@ export default {
 		'no-duplicate-selectors': true,
 		'no-empty-source': true,
 		'no-invalid-double-slash-comments': true,
-		'no-invalid-position-at-import-rule': true,
+		'no-invalid-position-at-import-rule': [true, { ignoreAtRules: ['config'] }],
 		'no-irregular-whitespace': true,
 		'number-max-precision': 4,
-		'order/order': ['custom-properties', 'declarations'],
-		'order/properties-alphabetical-order': true,
 		'property-no-unknown': true,
 		'property-no-vendor-prefix': true,
 		'rule-empty-line-before': [
@@ -134,7 +141,7 @@ export default {
 		'selector-pseudo-element-no-unknown': [
 			true,
 			{
-				ignorePseudoElements: ['host', 'host-context', 'ng-deep']
+				ignorePseudoElements: ['custom-elements', 'ng-deep']
 			}
 		],
 		'selector-type-case': 'lower',
