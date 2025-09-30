@@ -28,9 +28,9 @@
 		"stylelint-order": "^7.0.0"
 	},
 	"devDependencies": {
-		"@opi_pib/eslint-config-base": "^9.4.4",
+		"@opi_pib/eslint-config-base": "^9.0.0",
 		"@opi_pib/prettier-config-base": "^1.0.0",
-		"vitest": "^3.2.4"
+		"vitest": "^3.0.0"
 	},
 	"repository": {
 		"type": "git",
