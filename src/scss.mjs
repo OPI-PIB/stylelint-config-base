@@ -9,7 +9,7 @@ export default {
 	extends: 'stylelint-config-recommended',
 	files: ['**/*.scss'],
 	customSyntax: postcssScss,
-	plugins: [...cssConfig.plugins, 'stylelint-order', 'stylelint-scss'],
+	plugins: [...cssConfig.plugins, 'stylelint-scss'],
 	rules: {
 		...cssConfig.rules,
 		...recommendedScss.rules,
@@ -68,8 +68,6 @@ export default {
 				message: 'Expected variable to be kebab-case'
 			}
 		],
-		'scss/double-slash-comment-empty-line-before': null,
-		'scss/double-slash-comment-whitespace-inside': null,
 		'scss/function-quote-no-quoted-strings-inside': true,
 		'scss/function-unquote-no-unquoted-strings-inside': true,
 		'scss/load-no-partial-leading-underscore': true,

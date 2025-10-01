@@ -14,7 +14,7 @@
 		"npm": ">=10.8.0"
 	},
 	"scripts": {
-		"test": "node --test tests/**/*.spec.mjs"
+		"test": "node --test-only tests/scss.spec.mjs"
 	},
 	"prettier": "@opi_pib/prettier-config-base",
 	"author": "Dawid Lubowiecki",

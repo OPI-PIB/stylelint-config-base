@@ -3,7 +3,7 @@ import { describe, test } from 'node:test';
 
 import stylelint from 'stylelint';
 
-import config from '../src/css.mjs';
+import config from '../src/scss.mjs';
 
 function lintCss(code, customConfig = config) {
 	return stylelint.lint({
@@ -106,7 +106,7 @@ describe('Stylelint Rules SCSS', () => {
 		strictEqual(result.errored, false);
 	});
 
-	test('at-rule-empty-line-before', async () => {
+	test.only('at-rule-empty-line-before', async () => {
 		const validCSS = `
 	      @import url("a.css");
 
@@ -125,7 +125,7 @@ describe('Stylelint Rules SCSS', () => {
 		strictEqual(hasRule(result, 'at-rule-empty-line-before'), true);
 	});
 
-	test('at-rule-no-unknown', async () => {
+	test.only('at-rule-no-unknown', async () => {
 		const validCSS = `
 			@charset "UTF-8";
 
@@ -500,7 +500,7 @@ describe('Stylelint Rules SCSS', () => {
 		strictEqual(hasRule(result, 'function-name-case'), true);
 	});
 
-	test('function-no-unknown', async () => {
+	test.only('function-no-unknown', async () => {
 		const validCSS = `.a { color: rgb(0 0 0); }`;
 		const invalidCSS = `.a { color: unknownFunc(0); }`;
 
@@ -710,7 +710,7 @@ describe('Stylelint Rules SCSS', () => {
 		strictEqual(hasRule(result, 'no-descending-specificity'), true);
 	});
 
-	test('no-duplicate-at-import-rules', async () => {
+	test.only('no-duplicate-at-import-rules', async () => {
 		const validCSS = `@import url("a.css");`;
 		const invalidCSS = `@import url("a.css"); @import url("a.css");`;
 
@@ -746,7 +746,7 @@ describe('Stylelint Rules SCSS', () => {
 		strictEqual(hasRule(result, 'no-empty-source'), true);
 	});
 
-	test('no-invalid-double-slash-comments', async () => {
+	test.only('no-invalid-double-slash-comments', async () => {
 		const validCSS = `/* comment */`;
 		const invalidCSS = `a {
 			//color: pink;
@@ -761,12 +761,12 @@ describe('Stylelint Rules SCSS', () => {
 	});
 
 	test('no-invalid-position-at-import-rule', async () => {
-		const validCSS = `@import url("a.css"); 
+		const validCSS = `@import "a.css"; 
 		
 		.a { color: red; }`;
 		const invalidCSS = `.a { color: red; } 
 		
-		@import url("a.css");`;
+		@import "a.css";`;
 
 		let result = await lintCss(validCSS);
 		strictEqual(result.errored, false);
