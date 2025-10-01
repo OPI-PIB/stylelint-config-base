@@ -738,200 +738,206 @@ describe('Stylelint Rules', () => {
 		expect(result.errored).toBe(false);
 		result = await lintCss(invalidCSS);
 		expect(result.errored).toBe(true);
-		expect(result.results[0].warnings[0].rule).toBe('number-max-precision');
+		expect(result.results[0].warnings.some((x) => x.rule === 'number-max-precision')).toBe(true);
 	});
 
-	//
+	it('property-no-unknown', async () => {
+		const validCSS = `.a { color: red; }`;
+		const invalidCSS = `.a { unknown-property: 1; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'property-no-unknown')).toBe(true);
+	});
 
-	//   it('property-no-unknown', async () => {
-	//     const validCSS = `.a { color: red; }`;
-	//     const invalidCSS = `.a { unknown-property: 1; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('property-no-unknown');
-	//   });
+	it('property-no-vendor-prefix', async () => {
+		const validCSS = `.a { display: flex; }`;
+		const invalidCSS = `.a { -moz-columns: 2; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'property-no-vendor-prefix')).toBe(true);
+	});
 
-	//   it('property-no-vendor-prefix', async () => {
-	//     const validCSS = `.a { display: flex; }`;
-	//     const invalidCSS = `.a { -webkit-box-flex: 1; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('property-no-vendor-prefix');
-	//   });
+	it('rule-empty-line-before', async () => {
+		const validCSS = `
+			a {
+				color: red;
+			}
 
-	//   it('rule-empty-line-before', async () => {
-	//     const validCSS = `
-	//       .a { color: red; }
+			b {
+				color: blue;
+			}
+		`;
+		const invalidCSS = `
+			a {
+				color: red;
+			}
+			b {
+				color: blue;
+			}
+		`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'rule-empty-line-before')).toBe(true);
+	});
 
-	//       .b { color: blue; }
-	//     `;
-	//     const invalidCSS = `
-	//       .a { color: red; }
-	//       .b { color: blue; }
-	//     `;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('rule-empty-line-before');
-	//   });
+	it('selector-anb-no-unmatchable', async () => {
+		const validCSS = `a:nth-last-child(1n) { color: red; }`;
+		const invalidCSS = `a:nth-child(0) { color: red; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'selector-anb-no-unmatchable')).toBe(true);
+	});
 
-	//   it('selector-anb-no-unmatchable', async () => {
-	//     const validCSS = `.a .b { color: red; }`;
-	//     const invalidCSS = `.a > ~ .b { color: red; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('selector-anb-no-unmatchable');
-	//   });
+	it('selector-attribute-quotes', async () => {
+		const validCSS = `[type="text"] { color: red; }`;
+		const invalidCSS = `[type=text] { color: red; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'selector-attribute-quotes')).toBe(true);
+	});
 
-	//   it('selector-attribute-quotes', async () => {
-	//     const validCSS = `[type="text"] { color: red; }`;
-	//     const invalidCSS = `[type=text] { color: red; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('selector-attribute-quotes');
-	//   });
+	it('selector-class-pattern', async () => {
+		const validCSS = `.button__primary--icon { color: red; }`;
+		const invalidCSS = `.ButtonPrimaryIcon { color: red; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'selector-class-pattern')).toBe(true);
+	});
 
-	//   it('selector-class-pattern', async () => {
-	//     const validCSS = `.button--primary__icon { color: red; }`;
-	//     const invalidCSS = `.ButtonPrimaryIcon { color: red; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('selector-class-pattern');
-	//   });
+	it('selector-no-vendor-prefix', async () => {
+		const validCSS = `.a { color: red; }`;
+		const invalidCSS = `input::-moz-placeholder { color: red; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'selector-no-vendor-prefix')).toBe(true);
+	});
 
-	//   it('selector-no-vendor-prefix', async () => {
-	//     const validCSS = `.a { color: red; }`;
-	//     const invalidCSS = `.-webkit-input-placeholder { color: red; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('selector-no-vendor-prefix');
-	//   });
+	it('selector-not-notation', async () => {
+		const validCSS = `:not(.a) { color: red; }`;
+		const invalidCSS = `:not(a):not(div) { color: red; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'selector-not-notation')).toBe(true);
+	});
 
-	//   it('selector-not-notation', async () => {
-	//     const validCSS = `:not(.a) { color: red; }`;
-	//     const invalidCSS = `:not(.a, .b) { color: red; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('selector-not-notation');
-	//   });
+	it('selector-pseudo-class-no-unknown', async () => {
+		const validCSS = `:hover { color: red; }`;
+		const invalidCSS = `:unknown { color: red; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'selector-pseudo-class-no-unknown')).toBe(true);
+	});
 
-	//   it('selector-pseudo-class-no-unknown', async () => {
-	//     const validCSS = `:hover { color: red; }`;
-	//     const invalidCSS = `:unknown { color: red; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('selector-pseudo-class-no-unknown');
-	//   });
+	it('selector-pseudo-element-colon-notation', async () => {
+		const validCSS = `p::before { content: ''; }`;
+		const invalidCSS = `p:before { content: ''; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'selector-pseudo-element-colon-notation')).toBe(true);
+	});
 
-	//   it('selector-pseudo-element-colon-notation', async () => {
-	//     const validCSS = `p::before { content: ''; }`;
-	//     const invalidCSS = `p:before { content: ''; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('selector-pseudo-element-colon-notation');
-	//   });
+	it('selector-pseudo-element-no-unknown', async () => {
+		const validCSS = `
+			p::before { content: ''; }
+			:host { color: red; }
+			:host-context { color: red; }
+			::ng-deep { color: red; }
+		`;
+		const invalidCSS = `p::unknown { content: ''; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'selector-pseudo-element-no-unknown')).toBe(true);
+	});
 
-	// it('selector-pseudo-element-no-unknown', async () => {
-	// 	const validCSS = `
-	// 		p::before { content: ''; }
-	// 		:host { color: red; }
-	// 		:host-context { color: red; }
-	// 		::ng-deep { color: red; }
-	// 		`;
-	// 	const invalidCSS = `p::unknown { content: ''; }`;
-	// 	let result = await lintCss(validCSS);
-	// 	expect(result.errored).toBe(false);
-	// 	result = await lintCss(invalidCSS);
-	// 	expect(result.errored).toBe(true);
-	// 	expect(result.results[0].warnings[0].rule).toBe('selector-pseudo-element-no-unknown');
-	// });
+	it('selector-type-case', async () => {
+		const validCSS = `div { color: red; }`;
+		const invalidCSS = `DIV { color: red; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'selector-type-case')).toBe(true);
+	});
 
-	//   it('selector-type-case', async () => {
-	//     const validCSS = `div { color: red; }`;
-	//     const invalidCSS = `DIV { color: red; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('selector-type-case');
-	//   });
+	it('selector-type-no-unknown', async () => {
+		const validCSS = `div { color: red; }`;
+		const invalidCSS = `unknown { color: red; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'selector-type-no-unknown')).toBe(true);
+	});
 
-	//   it('selector-type-no-unknown', async () => {
-	//     const validCSS = `div { color: red; }`;
-	//     const invalidCSS = `unknown-tag { color: red; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('selector-type-no-unknown');
-	//   });
+	it('shorthand-property-no-redundant-values', async () => {
+		const validCSS = `.a { margin: 1px 2px; }`;
+		const invalidCSS = `.a { margin: 1px 1px 1px 1px; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'shorthand-property-no-redundant-values')).toBe(true);
+	});
 
-	//   it('shorthand-property-no-redundant-values', async () => {
-	//     const validCSS = `.a { margin: 1px 2px; }`;
-	//     const invalidCSS = `.a { margin: 1px 1px 1px 1px; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('shorthand-property-no-redundant-values');
-	//   });
+	it('string-no-newline', async () => {
+		const validCSS = `.a { content: "Hello"; }`;
+		const invalidCSS = `.a { content: "Hello\nWorld"; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'string-no-newline')).toBe(true);
+	});
 
-	//   it('string-no-newline', async () => {
-	//     const validCSS = `.a { content: "Hello"; }`;
-	//     const invalidCSS = `.a { content: "Hello\nWorld"; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('string-no-newline');
-	//   });
+	it('unit-no-unknown', async () => {
+		const validCSS = `.a { margin: 10px; }`;
+		const invalidCSS = `.a { margin: 10unknown; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'unit-no-unknown')).toBe(true);
+	});
 
-	//   it('unit-no-unknown', async () => {
-	//     const validCSS = `.a { margin: 10px; }`;
-	//     const invalidCSS = `.a { margin: 10unknown; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('unit-no-unknown');
-	//   });
+	it('value-keyword-case', async () => {
+		const validCSS = `.a { display: block; }`;
+		const invalidCSS = `.a { display: Block; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'value-keyword-case')).toBe(true);
+	});
 
-	//   it('value-keyword-case', async () => {
-	//     const validCSS = `.a { display: block; }`;
-	//     const invalidCSS = `.a { display: Block; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('value-keyword-case');
-	//   });
-
-	//   it('value-no-vendor-prefix', async () => {
-	//     const validCSS = `.a { display: box; }`;
-	//     const invalidCSS = `.a { display: -webkit-flex; }`;
-	//     let result = await lintCss(validCSS);
-	//     expect(result.errored).toBe(false);
-	//     result = await lintCss(invalidCSS);
-	//     expect(result.errored).toBe(true);
-	//     expect(result.results[0].warnings[0].rule).toBe('value-no-vendor-prefix');
-	//   });
+	it('value-no-vendor-prefix', async () => {
+		const validCSS = `.a { display: flex; }`;
+		const invalidCSS = `.a { display: -webkit-flex; }`;
+		let result = await lintCss(validCSS);
+		expect(result.errored).toBe(false);
+		result = await lintCss(invalidCSS);
+		expect(result.errored).toBe(true);
+		expect(result.results[0].warnings.some((x) => x.rule === 'value-no-vendor-prefix')).toBe(true);
+	});
 });
