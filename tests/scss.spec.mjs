@@ -16,7 +16,7 @@ function hasRule(result, rule) {
 	return result.results[0].warnings.some((x) => x.rule === rule);
 }
 
-describe('Stylelint Rules CSS', () => {
+describe('Stylelint Rules SCSS', () => {
 	test('plugin/no-unsupported-browser-features', async () => {
 		const customConfig = {
 			...config,
@@ -103,8 +103,7 @@ describe('Stylelint Rules CSS', () => {
 		strictEqual(result.errored, false);
 
 		result = await lintCss(invalidCSS);
-		strictEqual(result.errored, true);
-		strictEqual(hasRule(result, 'annotation-no-unknown'), true);
+		strictEqual(result.errored, false);
 	});
 
 	test('at-rule-empty-line-before', async () => {
@@ -150,8 +149,7 @@ describe('Stylelint Rules CSS', () => {
 		strictEqual(result.errored, false);
 
 		result = await lintCss(invalidCSS);
-		strictEqual(result.errored, true);
-		strictEqual(hasRule(result, 'at-rule-no-unknown'), true);
+		strictEqual(result.errored, false);
 	});
 
 	test('at-rule-no-vendor-prefix', async () => {
@@ -241,8 +239,7 @@ describe('Stylelint Rules CSS', () => {
 		strictEqual(result.errored, false);
 
 		result = await lintCss(invalidCSS);
-		strictEqual(result.errored, true);
-		strictEqual(hasRule(result, 'comment-no-empty'), true);
+		strictEqual(result.errored, false);
 	});
 
 	test('comment-whitespace-inside', async () => {
@@ -511,8 +508,7 @@ describe('Stylelint Rules CSS', () => {
 		strictEqual(result.errored, false);
 
 		result = await lintCss(invalidCSS);
-		strictEqual(result.errored, true);
-		strictEqual(hasRule(result, 'function-no-unknown'), true);
+		strictEqual(result.errored, false);
 	});
 
 	test('function-url-quotes', async () => {
@@ -540,8 +536,8 @@ describe('Stylelint Rules CSS', () => {
 	});
 
 	test('import-notation', async () => {
-		const validCSS = `@import url("a.css");`;
-		const invalidCSS = `@import "a.css";`;
+		const validCSS = `@import "a.css";`;
+		const invalidCSS = `@import url("a.css");`;
 
 		let result = await lintCss(validCSS);
 		strictEqual(result.errored, false);
@@ -671,8 +667,7 @@ describe('Stylelint Rules CSS', () => {
 		strictEqual(result.errored, false);
 
 		result = await lintCss(invalidCSS);
-		strictEqual(result.errored, true);
-		strictEqual(hasRule(result, 'media-query-no-invalid'), true);
+		strictEqual(result.errored, false);
 	});
 
 	test('named-grid-areas-no-invalid', async () => {
