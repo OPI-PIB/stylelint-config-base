@@ -14,7 +14,7 @@
 		"npm": ">=10.8.0"
 	},
 	"scripts": {
-		"test": "vitest --run"
+		"test": "node --test tests/**/*.spec.mjs"
 	},
 	"prettier": "@opi_pib/prettier-config-base",
 	"author": "Dawid Lubowiecki",
@@ -29,8 +29,7 @@
 	},
 	"devDependencies": {
 		"@opi_pib/eslint-config-base": "^9.0.0",
-		"@opi_pib/prettier-config-base": "^1.0.0",
-		"vitest": "^3.0.0"
+		"@opi_pib/prettier-config-base": "^1.0.0"
 	},
 	"repository": {
 		"type": "git",
