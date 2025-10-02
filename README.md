@@ -8,7 +8,7 @@ npm install -D stylelint @opi_pib/stylelint-config-base
 
 ## Config
 
-### stylelint.config.mjs
+### stylelint.config.mjs // or .stylelintrc.mjs
 
 ```
 import { css } from '@opi_pib/stylelint-config-base'; // or scss
@@ -23,7 +23,7 @@ export default css;
 "lint:styles": "stylelint **/*.scss --fix -i=.gitignore",
 ```
 
-### browserslist
+### .browserslistrc
 
 ```
 > 5%
