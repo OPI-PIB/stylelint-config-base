@@ -3,7 +3,7 @@
 ## Install
 
 ```
-npm install -D stylelint @opi_pib/stylelint-config-base
+npm install -D @opi_pib/stylelint-config-base
 ```
 
 ## Config
