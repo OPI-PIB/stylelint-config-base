@@ -1,11 +1,7 @@
-'use strict';
-
-const postcssScss = require('postcss-scss');
-
-module.exports = {
-	extends: ['stylelint-config-recommended-scss'],
+/** @type {import('stylelint').Config} */
+export default {
+	extends: 'stylelint-config-recommended',
 	plugins: ['stylelint-no-unsupported-browser-features', 'stylelint-order'],
-	customSyntax: postcssScss,
 	rules: {
 		'plugin/no-unsupported-browser-features': [
 			true,
@@ -13,18 +9,15 @@ module.exports = {
 				severity: 'warning'
 			}
 		],
+		'order/order': ['custom-properties', 'declarations'],
+		'order/properties-alphabetical-order': true,
 		'alpha-value-notation': [
 			'percentage',
 			{
-				exceptProperties: [
-					'opacity',
-					'fill-opacity',
-					'flood-opacity',
-					'stop-opacity',
-					'stroke-opacity'
-				]
+				exceptProperties: ['opacity', 'fill-opacity', 'flood-opacity', 'stop-opacity', 'stroke-opacity']
 			}
 		],
+		'annotation-no-unknown': true,
 		'at-rule-empty-line-before': [
 			'always',
 			{
@@ -33,9 +26,12 @@ module.exports = {
 				ignoreAtRules: ['else']
 			}
 		],
+		'at-rule-no-unknown': true,
 		'at-rule-no-vendor-prefix': true,
+		'block-no-empty': true,
 		'color-function-notation': 'modern',
 		'color-hex-length': 'short',
+		'color-no-invalid-hex': true,
 		'comment-empty-line-before': [
 			'always',
 			{
@@ -43,6 +39,7 @@ module.exports = {
 				ignore: ['stylelint-commands']
 			}
 		],
+		'comment-no-empty': true,
 		'comment-whitespace-inside': 'always',
 		'custom-media-pattern': [
 			'^([a-z][a-z0-9]*)(-[a-z0-9]+)*$',
@@ -57,13 +54,22 @@ module.exports = {
 				ignore: ['after-comment', 'inside-single-line-block']
 			}
 		],
+		'custom-property-no-missing-var-function': true,
 		'custom-property-pattern': [
 			'^(--)?([a-z][a-z0-9]*)(-[a-z0-9]+)*(__([a-z][a-z0-9]*)(-[a-z0-9]+)*)?(--([a-z][a-z0-9]*)(-[a-z0-9]+)*)?$',
 			{
 				message: (name) => `Nazwa właściwości "${name}" powinna być w formacie BEM`
 			}
 		],
+		'declaration-block-no-duplicate-custom-properties': true,
+		'declaration-block-no-duplicate-properties': [
+			true,
+			{
+				ignore: ['consecutive-duplicates-with-different-syntaxes']
+			}
+		],
 		'declaration-block-no-redundant-longhand-properties': true,
+		'declaration-block-no-shorthand-property-overrides': true,
 		'declaration-block-single-line-max-declarations': 1,
 		'declaration-empty-line-before': [
 			'always',
@@ -73,11 +79,17 @@ module.exports = {
 			}
 		],
 		'font-family-name-quotes': 'always-where-recommended',
+		'font-family-no-duplicate-names': true,
+		'font-family-no-missing-generic-family-keyword': true,
+		'function-calc-no-unspaced-operator': true,
+		'function-linear-gradient-no-nonstandard-direction': true,
 		'function-name-case': 'lower',
 		'function-no-unknown': true,
 		'function-url-quotes': 'always',
 		'hue-degree-notation': 'angle',
-		'import-notation': 'string',
+		'import-notation': 'url',
+		'keyframe-block-no-duplicate-selectors': true,
+		'keyframe-declaration-no-important': true,
 		'keyframe-selector-notation': 'percentage-unless-within-keyword-only-block',
 		'keyframes-name-pattern': [
 			'^([a-z][a-z0-9]*)(-[a-z0-9]+)*$',
@@ -92,11 +104,20 @@ module.exports = {
 			}
 		],
 		'lightness-notation': 'percentage',
+		'media-feature-name-no-unknown': true,
+		'media-feature-name-no-vendor-prefix': true,
 		'media-feature-range-notation': 'context',
+		'media-query-no-invalid': true,
+		'named-grid-areas-no-invalid': true,
+		'no-descending-specificity': true,
+		'no-duplicate-at-import-rules': true,
+		'no-duplicate-selectors': true,
+		'no-empty-source': true,
+		'no-invalid-double-slash-comments': true,
 		'no-invalid-position-at-import-rule': [true, { ignoreAtRules: ['config'] }],
+		'no-irregular-whitespace': true,
 		'number-max-precision': 4,
-		'order/order': ['at-rules', 'custom-properties', 'declarations'],
-		'order/properties-alphabetical-order': true,
+		'property-no-unknown': true,
 		'property-no-vendor-prefix': true,
 		'rule-empty-line-before': [
 			'always-multi-line',
@@ -105,6 +126,7 @@ module.exports = {
 				ignore: ['after-comment']
 			}
 		],
+		'selector-anb-no-unmatchable': true,
 		'selector-attribute-quotes': 'always',
 		'selector-class-pattern': [
 			'^([a-z][a-z0-9]*)(-[a-z0-9]+)*(__([a-z][a-z0-9]*)(-[a-z0-9]+)*)?(--([a-z][a-z0-9]*)(-[a-z0-9]+)*)?$',
@@ -114,6 +136,7 @@ module.exports = {
 		],
 		'selector-no-vendor-prefix': true,
 		'selector-not-notation': 'complex',
+		'selector-pseudo-class-no-unknown': true,
 		'selector-pseudo-element-colon-notation': 'double',
 		'selector-pseudo-element-no-unknown': [
 			true,
@@ -122,60 +145,21 @@ module.exports = {
 			}
 		],
 		'selector-type-case': 'lower',
+		'selector-type-no-unknown': [
+			true,
+			{
+				ignore: ['custom-elements']
+			}
+		],
 		'shorthand-property-no-redundant-values': true,
+		'string-no-newline': true,
+		'unit-no-unknown': true,
 		'value-keyword-case': 'lower',
 		'value-no-vendor-prefix': [
 			true,
 			{
 				// `-webkit-box` is allowed as standard. See https://www.w3.org/TR/css-overflow-3/#webkit-line-clamp
 				ignoreValues: ['box', 'inline-box']
-			}
-		],
-		'scss/at-rule-no-unknown': null,
-		'scss/at-else-closing-brace-newline-after': 'always-last-in-chain',
-		'scss/at-else-closing-brace-space-after': 'always-intermediate',
-		'scss/at-else-empty-line-before': 'never',
-		'scss/at-else-if-parentheses-space-before': 'always',
-		'scss/at-function-parentheses-space-before': 'never',
-		'scss/at-function-pattern': [
-			'^(-?[a-z][a-z0-9]*)(-[a-z0-9]+)*$',
-			{
-				message: 'Expected function name to be kebab-case'
-			}
-		],
-		'scss/at-if-closing-brace-newline-after': 'always-last-in-chain',
-		'scss/at-if-closing-brace-space-after': 'always-intermediate',
-		'scss/at-mixin-argumentless-call-parentheses': 'never',
-		'scss/at-mixin-parentheses-space-before': 'never',
-		'scss/at-mixin-pattern': [
-			'^_?([a-z][a-z0-9]*)(-[a-z0-9]+)*(__([a-z][a-z0-9]*)(-[a-z0-9]+)*)?(--([a-z][a-z0-9]*)(-[a-z0-9]+)*)?$',
-			{
-				message: 'Nazwa mixina powinna być w formacie BEM'
-			}
-		],
-		'scss/at-rule-conditional-no-parentheses': true,
-		'scss/comment-no-empty': null,
-		'scss/dollar-variable-colon-space-after': 'always-single-line',
-		'scss/dollar-variable-colon-space-before': 'never',
-		'scss/dollar-variable-empty-line-before': [
-			'always',
-			{
-				except: ['after-dollar-variable', 'first-nested'],
-				ignore: ['after-comment', 'inside-single-line-block']
-			}
-		],
-		'scss/dollar-variable-pattern': [
-			'^(-?[a-z][a-z0-9]*)(-[a-z0-9]+)*$',
-			{
-				message: 'Expected variable to be kebab-case'
-			}
-		],
-		'scss/double-slash-comment-empty-line-before': null,
-		'scss/double-slash-comment-whitespace-inside': null,
-		'scss/percent-placeholder-pattern': [
-			'^_?([a-z][a-z0-9]*)(-[a-z0-9]+)*(__([a-z][a-z0-9]*)(-[a-z0-9]+)*)?(--([a-z][a-z0-9]*)(-[a-z0-9]+)*)?$',
-			{
-				message: 'Nazwa placeholdera powinna byc w formacie BEM'
 			}
 		]
 	}

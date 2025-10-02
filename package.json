@@ -1,23 +1,36 @@
 {
 	"name": "@opi_pib/stylelint-config-base",
-	"version": "1.5.3",
+	"version": "1.5.4",
+	"description": "Stylelint config",
+	"main": "src/index.mjs",
+	"type": "module",
+	"exports": {
+		".": "./src/index.mjs",
+		"./css": "./src/css.mjs",
+		"./scss": "./src/scss.mjs"
+	},
 	"engines": {
 		"node": ">=24.0.0",
 		"npm": ">=10.8.0"
 	},
-	"description": "Stylelint config for scss files",
-	"main": "index.js",
+	"scripts": {
+		"test": "node --test tests/**/*.spec.mjs"
+	},
+	"prettier": "@opi_pib/prettier-config-base",
 	"author": "Dawid Lubowiecki",
 	"license": "MIT",
-	"scripts": {
-		"test": "node ./test/test.mjs"
-	},
 	"dependencies": {
 		"postcss-scss": "^4.0.0",
 		"stylelint": "^16.0.0",
+		"stylelint-config-recommended": "^17.0.0",
 		"stylelint-config-recommended-scss": "^16.0.0",
 		"stylelint-no-unsupported-browser-features": "^8.0.0",
-		"stylelint-order": "^7.0.0"
+		"stylelint-order": "^7.0.0",
+		"stylelint-scss": "^6.0.0"
+	},
+	"devDependencies": {
+		"@opi_pib/eslint-config-base": "^9.0.0",
+		"@opi_pib/prettier-config-base": "^1.0.0"
 	},
 	"repository": {
 		"type": "git",

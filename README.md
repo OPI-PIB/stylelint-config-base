@@ -8,12 +8,13 @@ npm install -D stylelint @opi_pib/stylelint-config-base
 
 ## Config
 
-### .stylelintrc.json
+### stylelint.config.mjs
 
 ```
-{
-	"extends": ["@opi_pib/stylelint-config-base"]
-}
+import { css } from '@opi_pib/stylelint-config-base'; // or scss
+
+/** @type {import('stylelint').Config} */
+export default css;
 ```
 
 ### package.json
