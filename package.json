@@ -1,6 +1,6 @@
 {
 	"name": "@opi_pib/stylelint-config-base",
-	"version": "1.5.5",
+	"version": "1.5.6",
 	"description": "Stylelint config",
 	"main": "src/index.mjs",
 	"type": "module",
