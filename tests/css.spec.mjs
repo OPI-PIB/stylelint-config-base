@@ -66,13 +66,13 @@ describe('Stylelint Rules CSS', () => {
 	});
 
 	test('order/properties-alphabetical-order', async () => {
-		const validCSS = `.a { 
-			background: red; 
-			color: blue; 
+		const validCSS = `.a {
+			background: red;
+			color: blue;
 		}`;
-		const invalidCSS = `.a { 
-			color: blue; 
-			background: red; 
+		const invalidCSS = `.a {
+			color: blue;
+			background: red;
 		}`;
 
 		let result = await lintCss(validCSS);
@@ -293,15 +293,15 @@ describe('Stylelint Rules CSS', () => {
 	});
 
 	test('custom-property-no-missing-var-function', async () => {
-		const validCSS = `:root { 
-			--main-color: red; 
+		const validCSS = `:root {
+			--main-color: red;
 
-			color: var(--main-color); 
+			color: var(--main-color);
 		}`;
-		const invalidCSS = `:root { 
-			--main-color: red; 
+		const invalidCSS = `:root {
+			--main-color: red;
 
-			color: --main-color; 
+			color: --main-color;
 		}`;
 
 		let result = await lintCss(validCSS);
@@ -347,13 +347,13 @@ describe('Stylelint Rules CSS', () => {
 	});
 
 	test('declaration-block-no-duplicate-properties', async () => {
-		const validCSS = `.a { 
+		const validCSS = `.a {
 			background: blue;
-			color: red; 
+			color: red;
 		}`;
-		const invalidCSS = `.a { 
-			color: red; 
-			color: blue; 
+		const invalidCSS = `.a {
+			color: red;
+			color: blue;
 		}`;
 
 		let result = await lintCss(validCSS);
@@ -366,11 +366,11 @@ describe('Stylelint Rules CSS', () => {
 
 	test('declaration-block-no-redundant-longhand-properties', async () => {
 		const validCSS = `.a { margin: 1px; }`;
-		const invalidCSS = `.a { 
-			margin-top: 1px; 
-			margin-right: 1px; 
-			margin-bottom: 1px; 
-			margin-left: 1px; 
+		const invalidCSS = `.a {
+			margin-top: 1px;
+			margin-right: 1px;
+			margin-bottom: 1px;
+			margin-left: 1px;
 		}`;
 
 		let result = await lintCss(validCSS);
@@ -383,7 +383,7 @@ describe('Stylelint Rules CSS', () => {
 
 	test('declaration-block-no-shorthand-property-overrides', async () => {
 		const validCSS = `.a { margin: 1px 2px; }`;
-		const invalidCSS = `.a { 
+		const invalidCSS = `.a {
 			margin-left: 2px;
 			margin: 1px;
 		}`;
@@ -600,7 +600,7 @@ describe('Stylelint Rules CSS', () => {
 	});
 
 	test('length-zero-no-unit', async () => {
-		const validCSS = `.a { 
+		const validCSS = `.a {
 			--custom: 0px;
 
 			margin: 0;
@@ -766,11 +766,11 @@ describe('Stylelint Rules CSS', () => {
 	});
 
 	test('no-invalid-position-at-import-rule', async () => {
-		const validCSS = `@import url("a.css"); 
-		
+		const validCSS = `@import url("a.css");
+
 		.a { color: red; }`;
-		const invalidCSS = `.a { color: red; } 
-		
+		const invalidCSS = `.a { color: red; }
+
 		@import url("a.css");`;
 
 		let result = await lintCss(validCSS);
