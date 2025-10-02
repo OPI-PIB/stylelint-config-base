@@ -1,9 +1,14 @@
 {
 	"name": "@opi_pib/stylelint-config-base",
-	"version": "1.5.4",
+	"version": "1.5.5",
 	"description": "Stylelint config",
 	"main": "src/index.mjs",
 	"type": "module",
+	"files": [
+		"src",
+		"LICENSE",
+		"README.md"
+	],
 	"exports": {
 		".": "./src/index.mjs",
 		"./css": "./src/css.mjs",
