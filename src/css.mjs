@@ -87,7 +87,6 @@ export default {
 		'function-no-unknown': true,
 		'function-url-quotes': 'always',
 		'hue-degree-notation': 'angle',
-		'import-notation': 'url',
 		'keyframe-block-no-duplicate-selectors': true,
 		'keyframe-declaration-no-important': true,
 		'keyframe-selector-notation': 'percentage-unless-within-keyword-only-block',
