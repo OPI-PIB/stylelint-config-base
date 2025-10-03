@@ -12,6 +12,7 @@ npm install -D @opi_pib/stylelint-config-base
 
 ```
 import { css } from '@opi_pib/stylelint-config-base'; // or scss
+// cssTw, scssTw for tailwind
 
 /** @type {import('stylelint').Config} */
 export default css;
