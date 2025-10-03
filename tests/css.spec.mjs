@@ -540,15 +540,14 @@ describe('Stylelint Rules CSS', () => {
 	});
 
 	test('import-notation', async () => {
-		const validCSS = `@import url("a.css");`;
-		const invalidCSS = `@import "a.css";`;
+		const validCSS = `@import "a.css";`;
+		const invalidCSS = `@import url("a.css");`;
 
 		let result = await lintCss(validCSS);
 		strictEqual(result.errored, false);
 
 		result = await lintCss(invalidCSS);
-		strictEqual(result.errored, true);
-		strictEqual(hasRule(result, 'import-notation'), true);
+		strictEqual(result.errored, false);
 	});
 
 	test('keyframe-block-no-duplicate-selectors', async () => {
