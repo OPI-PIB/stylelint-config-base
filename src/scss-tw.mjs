@@ -6,6 +6,6 @@ export default {
 	rules: {
 		...config.rules,
 		'custom-property-pattern': null,
-		'at-rule-no-unknown': [true, { ignoreAtRules: ['theme'] }]
+		'at-rule-no-unknown': [true, { ignoreAtRules: ['theme', 'source', 'reference'] }]
 	}
 };
