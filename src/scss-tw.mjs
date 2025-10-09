@@ -5,7 +5,6 @@ export default {
 	...config,
 	rules: {
 		...config.rules,
-		'custom-property-pattern': null,
-		'at-rule-no-unknown': [true, { ignoreAtRules: ['theme', 'source', 'reference', 'utility'] }]
+		'custom-property-pattern': null
 	}
 };
